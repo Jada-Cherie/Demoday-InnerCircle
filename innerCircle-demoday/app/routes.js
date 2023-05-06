@@ -4,16 +4,18 @@ module.exports = function(app, passport, db) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        res.render('indextwo.ejs');
     });
+    
+
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+        db.collection('journalEntry').find({name: req.user.local.email} ).toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,
-            messages: result
+            journal: result
           })
         })
     });
@@ -28,31 +30,36 @@ module.exports = function(app, passport, db) {
 
 // message board routes ===============================================================
 
-    app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
+    app.post('/emotionsJournal', (req, res) => {
+      db.collection('journalEntry').save({
+        name: req.user.local.email,
+        entry: req.body.entry,
+        date: req.body.date 
+       }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
       })
     })
 
-    app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp:req.body.thumbUp + 1
-        }
-      }, {
-        sort: {_id: -1},
-        upsert: true
-      }, (err, result) => {
+    app.put('/emotionsJournal', (req, res) => {
+      db.collection('journalEntry')
+      .findByAndUpdate(req.params.id, {
+        entry: req.body.entry,
+        date: req.body.date}, 
+        (err, result) => {
         if (err) return res.send(err)
         res.send(result)
       })
     })
 
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
+    app.delete('/emotionsJournal', (req, res) => {
+      console.log('it works', req.body)
+      db.collection('journalEntry').findOneAndDelete(
+        {
+        entry: req.body.entry,
+        date: req.body.date 
+      }, (err, result) => {
         if (err) return res.send(500, err)
         res.send('Message deleted!')
       })
