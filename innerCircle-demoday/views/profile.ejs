@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="font-awesome.min.css">
+    <script src="https://unpkg.com/phosphor-icons"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,7 +42,7 @@
           <form action="/emotionsJournal" method="post">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
-            <textarea type="text" name="entry" id="entry" placeholder="Type up your thoughts and feelings here"></textarea>
+            <input type="text" name="entry" id="entry" placeholder="Type up your thoughts and feelings here"></input>
             <button type="submit" id="btn">Submit</button>
           </form>
         </div>
@@ -53,8 +54,16 @@
             <li class="entries">
               <span><%= journal[i].date %></span>
               <span><%= journal[i].entry %></span>
-              <span class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+              <input type="text" name="" class="hide editEntry" value="<%=journal[i].entry%>">
+              <span class="edit">
+                <i class="fa fa-pencil" ></i>
+              </span>
+              <span class="hide">
+                <i class="ph ph-upload-simple" data-id="<%=journal[i]._id %>"></i>
+              </span>
+              <span>
+                <i class="fa fa-trash" data-id="<%=journal[i]._id %>" ></i>
+              </span>
             </li>
           <% } %>
           </ul>

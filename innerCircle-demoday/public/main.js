@@ -1,56 +1,53 @@
-var edit = document.querySelectorAll("fa-pencil");
+var editBtn = document.querySelectorAll(".fa-pencil");
+var saveBtn = document.querySelectorAll(".ph-upload-simple")
 var trash = document.getElementsByClassName("fa-trash");
+var editInput = document.querySelectorAll(".editEntry")
+var inputEntry = document.querySelector("#entry")
 
-edit.forEach(button => {
-  button.addEventListener('click', () =>{
-   // Get the journal entry element and text
-   const entryElement = button.parentElement.querySelector('span:nth-of-type(2)');
-   const entryText = entryElement.textContent.trim();
-   // Replace the entry text with a textarea element
-   entryElement.innerHTML = `<textarea>${entryText}</textarea>`;
-
-   // Replace the edit button with a save button
-   button.classList.remove('fa-pencil');
-   button.classList.add('fa-save');
-   button.addEventListener('click', saveHandler);
-  })
-})
-
-// Save button click handler
-function saveHandler(event) {
-  // Get the journal entry element and textarea
-  const entryElement = event.target.parentElement.querySelector('span:nth-of-type(2)');
-  const textarea = entryElement.querySelector('textarea');
-
-  // Get the new entry text
-  const newEntryText = textarea.value.trim();
-
-  // Make a PUT request to update the entry on the server
-  fetch('/emotionsJournal', {
-    method: 'put',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id: entryElement.dataset.id,
-      entry: newEntryText
+Array.from(saveBtn).forEach(function (element) {
+  element.addEventListener('click', function () {
+    const entry = this.parentNode.parentNode.childNodes[5].value
+    console.log(this.dataset.id)
+    fetch('/emotionsJournal', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        entry,
+        id: this.dataset.id
+      })
     })
-  })
-  .then(response => {
-    if (response.ok) {
-      // Update the entry text and replace the save button with the edit button
-      entryElement.innerHTML = newEntryText;
-      event.target.classList.remove('fa-save');
-      event.target.classList.add('fa-pencil');
-      event.target.removeEventListener('click', saveHandler);
-    } else {
-      throw new Error('Failed to update journal entry');
-    }
-  })
-  .catch(error => {
-    console.error(error);
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        
+        // window.location.reload(true)
+        const entry = this.parentNode.parentNode.childNodes[3]
+        entry.innerText = data.value.entry
+        const cloud = this.parentNode
+        const pencil = this.parentNode.parentNode.childNodes[7]
+        const editInput = this.parentNode.parentNode.childNodes[5]
+        pencil.classList.remove('hide')
+        entry.classList.remove('hide')
+        cloud.classList.add('hide')
+        editInput.classList.add('hide')
+      })
   });
-}
+});
+
+Array.from(editBtn).forEach(function (element) {
+  element.addEventListener('click', function () {
+    const entry = this.parentNode.parentNode.childNodes[3]
+    const pencil = this.parentNode
+    const cloud = this.parentNode.parentNode.childNodes[9]
+    const editInput = this.parentNode.parentNode.childNodes[5]
+    pencil.classList.add('hide')
+    entry.classList.add('hide')
+    cloud.classList.remove('hide')
+    editInput.classList.remove('hide')
+    console.log(this.dataset)
+  });
+});
 
 
 // Array.from(thumbUp).forEach(function(element) {

@@ -1,4 +1,4 @@
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport, db, ObjectId) {
 
 // normal routes ===============================================================
 
@@ -43,14 +43,23 @@ module.exports = function(app, passport, db) {
     })
 
     app.put('/emotionsJournal', (req, res) => {
+      console.log(req.body)
+      const {entry, id} = req.body
+      console.log(id)
       db.collection('journalEntry')
-      .findByAndUpdate(req.params.id, {
-        entry: req.body.entry,
-        date: req.body.date}, 
-        (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
+        .findOneAndUpdate({"_id":ObjectId(id) }, {
+          $set: {
+            entry
+          }
+        }, {
+          // sort: { _id: -1 },
+          returnOriginal : false
+          // upsert: true //if record not found then create one
+        }, (err, result) => {
+          if (err) return res.send(err)
+          console.log(result)
+          res.send(result)
+        })
     })
 
     app.delete('/emotionsJournal', (req, res) => {
