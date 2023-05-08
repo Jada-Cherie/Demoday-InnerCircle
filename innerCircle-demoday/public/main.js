@@ -7,8 +7,9 @@ var inputEntry = document.querySelector("#entry")
 Array.from(saveBtn).forEach(function (element) {
   element.addEventListener('click', function () {
     const entry = this.parentNode.parentNode.childNodes[5].value
+    console.log(entry)
     console.log(this.dataset.id)
-    fetch('/emotionsJournal', {
+    fetch('/updateJournal', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -23,7 +24,7 @@ Array.from(saveBtn).forEach(function (element) {
         
         // window.location.reload(true)
         const entry = this.parentNode.parentNode.childNodes[3]
-        entry.innerText = data.value.entry
+        // entry.innerText = data.value.entry
         const cloud = this.parentNode
         const pencil = this.parentNode.parentNode.childNodes[7]
         const editInput = this.parentNode.parentNode.childNodes[5]

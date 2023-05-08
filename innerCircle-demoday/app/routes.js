@@ -1,4 +1,5 @@
-module.exports = function(app, passport, db, ObjectId) {
+const ObjectId = require('mongodb').ObjectId
+module.exports = function(app, passport, db) {
 
 // normal routes ===============================================================
 
@@ -42,14 +43,15 @@ module.exports = function(app, passport, db, ObjectId) {
       })
     })
 
-    app.put('/emotionsJournal', (req, res) => {
+    app.put('/updateJournal', (req, res) => {
       console.log(req.body)
       const {entry, id} = req.body
       console.log(id)
       db.collection('journalEntry')
-        .findOneAndUpdate({"_id":ObjectId(id) }, {
+        .findOneAndUpdate({
+          "_id":ObjectId(id) }, {
           $set: {
-            entry
+            entry: entry
           }
         }, {
           // sort: { _id: -1 },
