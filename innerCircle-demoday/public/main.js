@@ -24,7 +24,7 @@ Array.from(saveBtn).forEach(function (element) {
         
         // window.location.reload(true)
         const entry = this.parentNode.parentNode.childNodes[3]
-        // entry.innerText = data.value.entry
+        entry.innerText = data.value.entry
         const cloud = this.parentNode
         const pencil = this.parentNode.parentNode.childNodes[7]
         const editInput = this.parentNode.parentNode.childNodes[5]
