@@ -44,13 +44,13 @@
             <input type="date" id="date" name="date" required>
             <label for="prompt">Choose a Journal Prompt:</label>
             <select name="prompt" id="prompt" required>
-              <option value="prompt">What is the dominant emotion you’re feeling right now?</option>
-              <option value="prompt">What do you think happened to trigger the emotion you’re currently feeling?</option>
-              <option value="prompt">What would you rather be doing right now? </option>
-              <option value="prompt">What is your greatest fear?</option>
-              <option value="prompt">Name five things you’re thankful for, and explain why.</option>
-              <option value="prompt">Write out an apology to someone you feel deserves it.</option>
-              <option value="prompt">What typically triggers a bad mood for you?
+              <option value="What is the dominant emotion you’re feeling right now?">What is the dominant emotion you’re feeling right now?</option>
+              <option value="What do you think happened to trigger the emotion you’re currently feeling?">What do you think happened to trigger the emotion you’re currently feeling?</option>
+              <option value="What would you rather be doing right now?">What would you rather be doing right now? </option>
+              <option value="What is your greatest fear?">What is your greatest fear?</option>
+              <option value="Name five things you’re thankful for, and explain why.">Name five things you’re thankful for, and explain why.</option>
+              <option value="Write out an apology to someone you feel deserves it.">Write out an apology to someone you feel deserves it.</option>
+              <option value="What typically triggers a bad mood for you?">What typically triggers a bad mood for you?
               </option>
             </select>
             <textarea type="text" name="entry" id="entry" cols="50" rows="15" placeholder="Type up your thoughts and feelings here"></textarea>
@@ -64,6 +64,7 @@
           <% for (var i = 0; i<journal.length; i++) {%>
             <li class="entries">
               <span><%= journal[i].date %></span>
+              <span><%= journal[i].prompt %></span>
               <span><%= journal[i].entry %></span>
               <input type="text" name="" class="hide editEntry" value="<%=journal[i].entry%>">
               <span class="edit">

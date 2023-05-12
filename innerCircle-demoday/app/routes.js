@@ -34,8 +34,8 @@ module.exports = function(app, passport, db) {
     app.post('/emotionsJournal', (req, res) => {
       db.collection('journalEntry').save({
         name: req.user.local.email,
-        entry: req.body.entry,
         prompt: req.body.prompt,
+        entry: req.body.entry,
         date: req.body.date 
        }, (err, result) => {
         if (err) return console.log(err)
