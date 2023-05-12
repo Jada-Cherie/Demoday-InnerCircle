@@ -42,7 +42,18 @@
           <form action="/emotionsJournal" method="post">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
-            <textarea type="text" name="entry" id="entry" placeholder="Type up your thoughts and feelings here"></textarea>
+            <label for="prompt">Choose a Journal Prompt:</label>
+            <select name="prompt" id="prompt" required>
+              <option value="prompt">What is the dominant emotion you’re feeling right now?</option>
+              <option value="prompt">What do you think happened to trigger the emotion you’re currently feeling?</option>
+              <option value="prompt">What would you rather be doing right now? </option>
+              <option value="prompt">What is your greatest fear?</option>
+              <option value="prompt">Name five things you’re thankful for, and explain why.</option>
+              <option value="prompt">Write out an apology to someone you feel deserves it.</option>
+              <option value="prompt">What typically triggers a bad mood for you?
+              </option>
+            </select>
+            <textarea type="text" name="entry" id="entry" cols="50" rows="15" placeholder="Type up your thoughts and feelings here"></textarea>
             <button type="submit" id="btn">Submit</button>
           </form>
         </div>

@@ -29,12 +29,13 @@ module.exports = function(app, passport, db) {
         res.redirect('/');
     });
 
-// message board routes ===============================================================
+// journal board routes ===============================================================
 
     app.post('/emotionsJournal', (req, res) => {
       db.collection('journalEntry').save({
         name: req.user.local.email,
         entry: req.body.entry,
+        prompt: req.body.prompt,
         date: req.body.date 
        }, (err, result) => {
         if (err) return console.log(err)
@@ -49,7 +50,8 @@ module.exports = function(app, passport, db) {
       console.log(id)
       db.collection('journalEntry')
         .findOneAndUpdate({
-          "_id":ObjectId(id) }, {
+          "_id":ObjectId(id) 
+        }, {
           $set: {
             entry: entry
           }
