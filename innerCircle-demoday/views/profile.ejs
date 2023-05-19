@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Users Page</title>
+    <title>InnerCircle-Profile Dashboard</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="font-awesome.min.css">
@@ -12,8 +12,9 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Journal Page</h1>
+        <h1> Journal Page</h1>
         <a href="/" class="btn btn-default btn-sm">Home</a>
+        <a href="/about" class="btn btn-default btn-sm">Search</a>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
@@ -58,15 +59,19 @@
           </form>
         </div>
         <% } %>
+
+        <div class="container">
+          <canvas id="myChart"></canvas>
+        </div>
         
         <h3>Journal Entries</h3>
           <ul class="entries">
           <% for (var i = 0; i<journal.length; i++) {%>
-            <li class="entries">
-              <span><%= journal[i].date %></span>
-              <span><%= journal[i].prompt %></span>
-              <span><%= journal[i].entry %></span>
-              <input type="text" name="" class="hide editEntry" value="<%=journal[i].entry%>">
+            <li class="entriesTwo">
+              <span class="dates"><%= journal[i].date %></span>
+              <span class="prompts"><%= journal[i].prompt %></span>
+              <span class="entry"><%= journal[i].entry %></span>
+              <textarea type="text" name="" class="hide editEntry" value="<%=journal[i].entry%>"></textarea>
               <span class="edit">
                 <i class="fa fa-pencil" ></i>
               </span>
@@ -79,12 +84,105 @@
             </li>
           <% } %>
           </ul>
-
-
-
 </div>
 
-<script src="main.js"></script>
 
+<script src="main.js"></script>
+<script src="app.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const data = {
+    labels:['Fear', 'Angry', 'Happy', 'Excited', 'Sad', 'Fear', 'Bored'],
+    datasets:[{
+      label: 'Journal # 1',
+      data: [
+                0.3,
+                0.05,
+                0.7,
+                0.3,
+                0.2,
+                0.1,
+                0.0
+            ],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+    },{
+        label: 'Journal # 2',
+          data: [0.7, 0.3, 0.5, 0.1, 0.0, 0.0, 0.2],
+          fill: true,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgb(54, 162, 235)',
+          pointBackgroundColor: 'rgb(54, 162, 235)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(54, 162, 235)'
+    }]
+  }
+  const options = {
+    scale: {
+      ticks: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  const ctx = document.getElementById('myChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: data,
+    options: options
+  });
+  //   let ctx = document.getElementById('myChart').getContext('2d')
+// let myChart = new Chart(ctx,{
+//     type:'line',
+//     data:{
+//         labels:['Fear', 'Angry', 'Happy', 'Excited', 'Sad', 'Fear', 'Bored'],
+//         datasets:[{
+//             label:'Emotions',
+//             data:[
+//                 0.3,
+//                 0.05,
+//                 0.7,
+//                 0.3,
+//                 0.2,
+//                 0.1,
+//                 0.0
+//             ],
+//             backgroundColor: [
+//           'rgba(255, 99, 132, 0.2)',
+//           'rgba(54, 162, 235, 0.2)',
+//           'rgba(255, 206, 86, 0.2)',
+//           'rgba(75, 192, 192, 0.2)',
+//           'rgba(153, 102, 255, 0.2)',
+//           'rgba(255, 159, 64, 0.2)'
+//         ],
+//         borderColor: [
+//           'rgba(255, 99, 132, 1)',
+//           'rgba(54, 162, 235, 1)',
+//           'rgba(255, 206, 86, 1)',
+//           'rgba(75, 192, 192, 1)',
+//           'rgba(153, 102, 255, 1)',
+//           'rgba(255, 159, 64, 1)'
+//         ],
+//         borderWidth: 1
+//         }]
+//     },
+//     options:{
+//       scales:{
+//         y:{
+//           beginAtZero: true
+//         }
+//       }
+//     }
+// }
+})
+</script>
 </body>
 </html>

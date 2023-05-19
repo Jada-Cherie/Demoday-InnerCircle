@@ -7,7 +7,11 @@ module.exports = function(app, passport, db) {
     app.get('/', function(req, res) {
         res.render('indextwo.ejs');
     });
-    
+
+    app.get('/about', function(req, res) {
+      res.render('about.ejs');
+    });
+
 
 
     // PROFILE SECTION =========================

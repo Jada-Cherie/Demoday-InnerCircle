@@ -5,3 +5,31 @@ body{
 img{
   height: 200px;
 }
+.entriesTwo{
+  border-radius: 7px;
+  border: 1px solid black;
+  list-style-type: none;
+  width: 33%;
+  height: 300px;
+  margin-bottom: 45px;
+}
+  .dates{
+    margin: 3px 4px;
+    font-weight: bold;
+    display: block;
+  }
+  .prompts{
+    margin: 3px 4px;
+    font-weight:400;
+    display: block;
+  }
+  .entry{
+    margin: 7px 9px;
+    font-weight: 300;
+    display: block;
+  }
+  .fa-pencil{
+    margin: 3px 4px;
+    
+  }
+  
