@@ -40,7 +40,7 @@
         <div class="col-sm-6">
           <h2>Add a Journal Entry</h2>
         <% if (user.local.email) { %>
-          <form action="/emotionsJournal" method="post" onsubmit="handleSubmit(event)">
+          <form action="/emotionsJournal" method="post" onsubmit="handleSubmit(event)" id="formInput">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
             <label for="prompt">Choose a Journal Prompt:</label>
@@ -54,7 +54,7 @@
               <option value="What typically triggers a bad mood for you?">What typically triggers a bad mood for you?
               </option>
             </select>
-            <textarea type="text" name="entry" id="entry" cols="50" rows="15" placeholder="Type up your thoughts and feelings here"></textarea>
+            <textarea type="entry" name="entry" id="entry" cols="50" rows="15" placeholder="Type up your thoughts and feelings here"></textarea>
             <button type="submit" id="btn">Submit</button>
           </form>
         </div>

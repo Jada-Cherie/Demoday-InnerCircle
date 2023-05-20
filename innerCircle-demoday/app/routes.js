@@ -1,5 +1,6 @@
 const ObjectId = require('mongodb').ObjectId
-module.exports = function(app, passport, db, http) {
+const { analyzeEmotions } = require('./utils');
+module.exports = function(app, passport, db,) {
 
 // normal routes ===============================================================
 
@@ -36,21 +37,20 @@ module.exports = function(app, passport, db, http) {
 // journal board routes ===============================================================
 
     app.post('/emotionsJournal', (req, res) => {
+      const text = req.body.text
+      const emotionResult = analyzeEmotions(text)
       db.collection('journalEntry').save({
         name: req.user.local.email,
         prompt: req.body.prompt,
         entry: req.body.entry,
-        date: req.body.date 
+        date: req.body.date,
+        emotionScores: emotionResult
        }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
+        res.json(emotionResult)
         res.redirect('/profile')
       })
-    })
-    app.post('/emotionsJournal', (req, res) => {
-      const text = req.body.text
-      const emotionResult = analyzeEmotions(text)
-      res.json(emotionResult)
     })
 
     app.put('/updateJournal', (req, res) => {
