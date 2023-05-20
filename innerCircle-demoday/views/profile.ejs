@@ -40,7 +40,7 @@
         <div class="col-sm-6">
           <h2>Add a Journal Entry</h2>
         <% if (user.local.email) { %>
-          <form action="/emotionsJournal" method="post">
+          <form action="/emotionsJournal" method="post" onsubmit="handleSubmit(event)">
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
             <label for="prompt">Choose a Journal Prompt:</label>
@@ -63,7 +63,13 @@
         <div class="container">
           <canvas id="myChart"></canvas>
         </div>
-        
+        <div class="col-sm-6">
+          <h2>Emotions</h2>
+          <span id="result-container"></span>
+        </div> <br>
+        <br>
+        <br>
+        <br>
         <h3>Journal Entries</h3>
           <ul class="entries">
           <% for (var i = 0; i<journal.length; i++) {%>

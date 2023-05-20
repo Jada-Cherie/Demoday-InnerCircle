@@ -1,5 +1,5 @@
 const ObjectId = require('mongodb').ObjectId
-module.exports = function(app, passport, db) {
+module.exports = function(app, passport, db, http) {
 
 // normal routes ===============================================================
 
@@ -47,6 +47,11 @@ module.exports = function(app, passport, db) {
         res.redirect('/profile')
       })
     })
+    app.post('/emotionsJournal', (req, res) => {
+      const text = req.body.text
+      const emotionResult = analyzeEmotions(text)
+      res.json(emotionResult)
+    })
 
     app.put('/updateJournal', (req, res) => {
       console.log(req.body)
@@ -81,6 +86,7 @@ module.exports = function(app, passport, db) {
         res.send('Message deleted!')
       })
     })
+
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

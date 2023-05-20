@@ -9,6 +9,7 @@ const {MongoClient, ObjectId} = require('mongodb')
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+const http = require('https');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -23,7 +24,7 @@ var db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db);
+  require('./app/routes.js')(app, passport, db, http);
 }); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
