@@ -1,5 +1,5 @@
 const ObjectId = require('mongodb').ObjectId
-const { analyzeEmotions } = require('./utils');
+// const { analyzeEmotions } = require('./utils');
 module.exports = function(app, passport, db,) {
 
 // normal routes ===============================================================
