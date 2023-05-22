@@ -14,7 +14,7 @@ module.exports = function(app, passport, db,) {
     });
 
     app.get('/videoChat', function(req, res) {
-      res.render('portfolio.ejs');
+      res.render('video.ejs');
     });
 
 
