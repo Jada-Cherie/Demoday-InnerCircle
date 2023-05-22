@@ -1,1 +1,3 @@
-const APP_ID = ""
+const APP_ID = "dd946348bfdf4cf697001d7da66e625b"
+const TOKEN = "007eJxTYDhx5v9pz5kHD5+wSuU+cSxiwZvPH04vOnrn4rKob4FJ7jbbFBhSUixNzIxNLJLSUtJMktPMLM0NDAxTzFMSzcxSzYxMk7TLslMaAhkZ3iroszIyQCCIz8KQkpqbz8AAANXpI48="
+const CHANNEL = "DEMO"
