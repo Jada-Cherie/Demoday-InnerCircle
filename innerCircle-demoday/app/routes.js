@@ -13,6 +13,10 @@ module.exports = function(app, passport, db,) {
       res.render('about.ejs');
     });
 
+    app.get('/videoChat', function(req, res) {
+      res.render('portfolio.ejs');
+    });
+
 
 
     // PROFILE SECTION =========================

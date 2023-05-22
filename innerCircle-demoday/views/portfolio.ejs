@@ -54,7 +54,7 @@
 	<link rel="stylesheet" href="css/superfish.css">
 
 	<link rel="stylesheet" href="css/style.css">
-
+	<link rel="stylesheet"  type="text/css" media="screen" href="stylesVideo.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -120,17 +120,7 @@
 				</div>
 			</header>
 		</div>
-		
-
-		<div class="fh5co-hero fh5co-hero-2">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover fh5co-cover_2 text-center" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_2.jpg);">
-				<div class="desc animate-box">
-					<h2>Our Works</h2>
-					<span>Lovely Crafted by <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">FREEHTML5.co</a></span>
-				</div>
-			</div>
-		</div>
+	
 		<!-- end:header-top -->
 
 		<div id="fh5co-portfolio">
@@ -138,102 +128,25 @@
 
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center heading-section animate-box">
-						<h3>Recent Work</h3>
+						<h3>Join Your eeting</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
 					</div>
 				</div>
 
+				<button type="button" id="join-btn">Join Meeting</button>
+
+				<div id="stream-wrapper">
+					<div id="video-streams"></div>
+					<div id="stream controls"></div>
+						<button id="leave-btn">Leave meeting</button>
+						<button id="mic-btn">Mic On</button>
+						<button id="camera-btn">Camera On</button>
+					</div>
+				</div>
+
 				
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-12">
-						<ul id="fh5co-portfolio-list">
-							
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-1.jpg); "> 
-							<a href="#" class="color-1">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Two Glas of Juice</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-2.jpg); ">
-							<a href="#" class="color-2">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Timer starts now!</h2>
-								</div>
-							</a>
-						</li>
-
-
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-3.jpg); ">
-							<a href="#" class="color-3">
-								<div class="case-studies-summary">
-									<span>Illustration</span>
-									<h2>Beautiful sunset</h2>
-								</div>
-							</a>
-						</li>
-						<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-4.jpg); ">
-							<a href="#" class="color-4">
-								<div class="case-studies-summary">
-									<span>Web Design</span>
-									<h2>Company's Conference Room</h2>
-								</div>
-							</a>
-						</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-5.jpg); ">
-								<a href="#" class="color-3">
-									<div class="case-studies-summary">
-										<span>Illustration</span>
-										<h2>Useful baskets</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-6.jpg); ">
-								<a href="#" class="color-4">
-									<div class="case-studies-summary">
-										<span>Web Design</span>
-										<h2>Skater man in the road</h2>
-									</div>
-								</a>
-							</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-1.jpg); ">
-								<a href="#" class="color-4">
-									<div class="case-studies-summary">
-										<span>Web Design</span>
-										<h2>Two Glas of Juice</h2>
-									</div>
-								</a>
-							</li>
-
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-2.jpg); "> 
-								<a href="#" class="color-5">
-									<div class="case-studies-summary">
-										<span>Web Design</span>
-										<h2>Timer starts now!</h2>
-									</div>
-								</a>
-							</li>
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(images/work-3.jpg); ">
-								<a href="#" class="color-6">
-									<div class="case-studies-summary">
-										<span>Illustration</span>
-										<h2>Beautiful sunset</h2>
-									</div>
-								</a>
-							</li>
-						</ul>		
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 text-center animate-box">
-						<a href="#" class="btn btn-primary btn-lg">Let's get started</a>
-					</div>
-				</div>
+				
+				
 
 				
 			</div>
@@ -277,8 +190,7 @@
 					</div>
 				</div>
 				<div class="fh5co-copyright text-center">
-					<p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>	
-				</div>
+					<p>&copy; 2023 All Rights Reserved. 
 			</div>
 		</footer>
 	</div>
@@ -305,6 +217,8 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
+	<script src="AgoraRTC_N-4.17.2.js"></script>
+	<script src="app.js"></script>
 
 	</body>
 </html>
