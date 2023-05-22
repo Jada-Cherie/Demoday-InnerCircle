@@ -45,6 +45,14 @@ const emotionKeywords = {
         });
         res.redirect('/');
     });
+// data for emoptions API ===============================================================
+//got advice from R%y on how to solve the scope issue and get the back end and clienbt side to talk with each other
+// app.get('/api/allData', req, res) => {
+//   res.json(journals)
+// }
+
+// app.get('api/')
+
 
 // journal board routes ===============================================================
 

@@ -53,11 +53,13 @@ h3{
   border-radius: 7px;
   border: 1px solid black;
   display: flex;
-  width: 33%;
+  width: 85%;
   height: 300px;
   margin-bottom: 45px;
   flex-flow: column wrap;
+  margin-left: 87px;
 }
+
 li
   .dates{
     margin: 3px 4px;
