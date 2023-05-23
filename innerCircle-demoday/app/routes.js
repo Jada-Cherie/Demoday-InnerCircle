@@ -47,11 +47,20 @@ const emotionKeywords = {
     });
 // data for emoptions API ===============================================================
 //got advice from R%y on how to solve the scope issue and get the back end and clienbt side to talk with each other
-// app.get('/api/allData', req, res) => {
-//   res.json(journals)
-// }
+//retrieving all the emotions
+app.get('/api/allData', (req, res) => {
+  res.json(emotionKeywords)
+})
 
-// app.get('api/')
+app.post('/analyze-emotions', (req, res) => {
+  const {entry} = req.body; // Assuming the text is sent in the request body as JSON
+
+  // Perform emotion analysis using the analyzeEmotions function
+  const emotionAnalysisResult = analyzeEmotions(text);
+
+  // Send the emotion analysis result as the response
+  res.json(emotionAnalysisResult);
+})
 
 
 // journal board routes ===============================================================

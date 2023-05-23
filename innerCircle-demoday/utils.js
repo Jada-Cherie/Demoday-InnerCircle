@@ -65,7 +65,4 @@ const emotionKeywords = {
       // Return the emotion percentages object
       return emotionPercentages;
     }
-// Export the function to make it accessible in other files
-module.exports = {
-    analyzeEmotions
-  };  
+
