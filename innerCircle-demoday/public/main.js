@@ -94,6 +94,7 @@ function analyzeEmotions(text) {
   fetch('/api/allData') // Assuming the server is running on the same host
     .then(response => response.json())
     .then(emotionKeywords => {
+      console.log(emotionKeywords)
       // Iterate over the emotion keywords and calculate scores
       // Loop through each emotion in emotionKeywords
       Object.keys(emotionKeywords).forEach(emotion => {
@@ -127,45 +128,63 @@ function analyzeEmotions(text) {
         emotionPercentages[emotion] = percentage.toFixed(2);
       });
       // Handle the emotion percentages object
-      console.log(emotionPercentages); // You can do further processing or display the data on the client side
+      console.log(emotionPercentages); 
     })
     .catch(error => {
       // Handle any errors that occur during the fetch request
       console.error('Error:', error);
     });
 }
+console.log(analyzeEmotions)
 
-// Function to make a fetch request and analyze emotions
-function fetchEmotionAnalysis() {
-  const url = '/analyze-emotions'; // Replace with the actual URL of your server-side endpoint
+function presentData () {
+  const text = document.querySelector('.entry').value
+  const emotionResult = analyzeEmotions(text)
 
-  // Get the text input value
-  const text = document.getElementById('entry').value;
+  const result = document.querySelector('.emotions') 
+  result.innerHTML = ''
 
-  // Make a POST request to your server-side endpoint
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ text: text })
+  Object.keys(emotionResult).forEach(emotion => {
+    const percentage = emotionResult[emotion]
+
+    const p = document.createElement('p')
+    p.innerText = `${emotion}: ${percentage}%`
+
+    result.appendChild(p)
   })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response data
-      console.log(data); // You can do further processing or display the data on the client side
-    })
-    .catch(error => {
-      // Handle any errors that occur during the fetch request
-      console.error('Error:', error);
-    });
 }
 
-// Attach event listener to the form submission
-document.getElementById('formInput').addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevent the form from submitting normally
-  fetchEmotionAnalysis(); // Call the fetchEmotionAnalysis function to perform emotion analysis
-});
+// // Function to make a fetch request and analyze emotions
+// function fetchEmotionAnalysis() {
+//   const url = '/emotionsJournal'; // Replace with the actual URL of your server-side endpoint
+
+//   // Get the text input value
+//   const text = document.getElementById('entry').value;
+
+//   // Make a POST request to your server-side endpoint
+//   fetch(url, {
+//     method: 'post',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ text: text })
+//   })
+//     .then(response => response.json())
+//     .then(data => {
+//       // Handle the response data
+//       console.log(data); // You can do further processing or display the data on the client side
+//     })
+//     .catch(error => {
+//       // Handle any errors that occur during the fetch request
+//       console.error('Error:', error);
+//     })
+// }
+
+// // Attach event listener to the form submission
+// document.getElementById('formInput').addEventListener('submit', function(event) {
+//   event.preventDefault(); // Prevent the form from submitting normally
+//   fetchEmotionAnalysis(); // Call the fetchEmotionAnalysis function to perform emotion analysis
+// })
 
 
 
