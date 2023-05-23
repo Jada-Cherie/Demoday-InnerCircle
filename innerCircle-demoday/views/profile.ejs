@@ -73,7 +73,8 @@
             <span>
               <i class="fa fa-trash" data-id="<%=journal[i]._id %>" ></i>
             </span>
-            <div class="emotions"></div>
+            <div class="emotions"> Sad: <%= journal[i].emotionScores['sad'] %>
+              Happy: <%= journal[i].emotionScores['happy'] %></div>
           </li>
           <% } %>
           </ul>

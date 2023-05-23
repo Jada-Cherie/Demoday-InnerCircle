@@ -47,11 +47,6 @@ const emotionKeywords = {
     });
 // data for emoptions API ===============================================================
 //got advice from R%y on how to solve the scope issue and get the back end and clienbt side to talk with each other
-//retrieving all the emotions
-app.get('/api/allData', (req, res) => {
-  res.json(emotionKeywords)
-})
-
 
 // journal board routes ===============================================================
 
@@ -60,12 +55,12 @@ app.get('/api/allData', (req, res) => {
       console.log(req.body)
       console.log(req.body.entry)
 
-      // Function to analyze emotions in text
-  function analyzeEmotions(text) {
+// Function to analyze emotions in text
+function analyzeEmotions(text) {
   // Preprocess the text (remove punctuation, convert to lowercase, etc.)
   // Convert text to lowercase
   // Remove punctuation from text
-  text = text.toLowerCase().replace(/[^\w\s]/g, '');
+  text = text.toLowerCase().replace(/[^\w\s]/g, '')
 
   // Initialize emotion scores
   // Create an object to hold the emotion scores, initializing each score to 0
@@ -76,54 +71,45 @@ app.get('/api/allData', (req, res) => {
     angry: 0,
     fear: 0,
     bored: 0
-  };
+  }
 
-  // Fetch the emotionKeywords object from the server
-  fetch('/api/allData') // Assuming the server is running on the same host
-    .then(response => response.json())
-    .then(emotionKeywords => {
-      console.log(emotionKeywords)
-      // Iterate over the emotion keywords and calculate scores
-      // Loop through each emotion in emotionKeywords
-      Object.keys(emotionKeywords).forEach(emotion => {
-        // Loop through each keyword associated with the current emotion
-        emotionKeywords[emotion].forEach(keyword => {
-          // Use a regular expression to match the keyword in the text
-          const regex = new RegExp(`\\b${keyword}\\b`, 'g');
-          // Count the number of matches for the keyword in the text
-          const matches = text.match(regex);
-          // Add the count to the score of the current emotion
-          if (matches) {
-            emotionScores[emotion] += matches.length;
-          }
-        });
-      });
-
-      // Calculate total score
-      // Sum up all the scores from the emotion scores object
-      const totalScore = Object.values(emotionScores).reduce((sum, score) => sum + score);
-
-      // Calculate emotion percentages
-      // Create an object to hold the emotion percentages
-      const emotionPercentages = {};
-      // Loop through each emotion in emotionScores
-      Object.keys(emotionScores).forEach(emotion => {
-        const score = emotionScores[emotion];
-        // Calculate the percentage by dividing the score of the emotion by the total score and multiplying by 100
-        const percentage = totalScore > 0 ? (score / totalScore) * 100 : 0;
-        // Round the percentage to 2 decimal places
-        // Add the percentage to the emotion percentages object
-        emotionPercentages[emotion] = percentage.toFixed(2);
-      });
-      // Handle the emotion percentages object
-      console.log(emotionPercentages); 
+  // Iterate over the emotion keywords and calculate scores
+  // Loop through each emotion in emotionKeywords
+  Object.keys(emotionKeywords).forEach(emotion => {
+    // Loop through each keyword associated with the current emotion
+    emotionKeywords[emotion].forEach(keyword => {
+      // Use a regular expression to match the keyword in the text
+      const regex = new RegExp(`\\b${keyword}\\b`, 'g')
+      // Count the number of matches for the keyword in the text
+      const matches = text.match(regex)
+      // Add the count to the score of the current emotion
+      if (matches) {
+        emotionScores[emotion] += matches.length
+      }
     })
-    .catch(error => {
-      // Handle any errors that occur during the fetch request
-      console.error('Error:', error);
-    });
+  })
+
+  // Calculate total score
+  // Sum up all the scores from the emotion scores object
+  const totalScore = Object.values(emotionScores).reduce((sum, score) => sum + score)
+
+  // Calculate emotion percentages
+  // Create an object to hold the emotion percentages
+  const emotionPercentages = {}
+  // Loop through each emotion in emotionScores
+  Object.keys(emotionScores).forEach(emotion => {
+    const score = emotionScores[emotion]
+    // Calculate the percentage by dividing the score of the emotion by the total score and multiplying by 100
+    const percentage = totalScore > 0 ? (score / totalScore) * 100 : 0
+    // Round the percentage to 2 decimal places
+    // Add the percentage to the emotion percentages object
+    emotionPercentages[emotion] = percentage.toFixed(2)
+  });
+
+  // Return the emotion percentages object
+  return emotionPercentages
 }
-console.log(analyzeEmotions)
+console.log(analyzeEmotions, 'This right here')
 const emotionScores = analyzeEmotions(text);
       console.log(req.body)
       db.collection('journalEntry').save({
@@ -135,7 +121,6 @@ const emotionScores = analyzeEmotions(text);
        }, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
-        res.json(emotionScores)
         res.redirect('/profile')
       })
     })
@@ -149,7 +134,8 @@ const emotionScores = analyzeEmotions(text);
           "_id":ObjectId(id) 
         }, {
           $set: {
-            entry: entry
+            entry: entry,
+         
           }
         }, {
           // sort: { _id: -1 },
