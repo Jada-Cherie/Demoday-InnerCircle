@@ -9,6 +9,7 @@
     <title>InnerCircle-VideoChat</title>
 </head>
 <body>
+    
     <div class="page-header text-center">
         <h1> Video Chat</h1>
         <a href="/" class="btn btn-default btn-sm">Home</a>
@@ -17,21 +18,17 @@
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-    
-    <button type="button" id="join-btn">Join Meeting</button>
-
+    <div>
+    <button type="button" id="joinBtn">Join Meeting</button>
+    </div>
 	<div id="stream-wrapper">
 		<div id="video-streams"></div>
 
 		<div id="stream controls"></div>
-			<button id="leave-btn">Leave meeting</button>
-			<button id="mic-btn">Mic On</button>
-			<button id="camera-btn">Camera On</button>
+			<button id="leaveBtn">Leave meeting</button>
 		</div>
 	</div>
 
-    <script type="text/javascript" src="/AgoraRTC_N-4.17.2.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script type="module" src="./app.js"></script>
 </body>
 </html>
