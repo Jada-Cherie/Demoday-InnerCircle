@@ -69,58 +69,9 @@
 		<div id="fh5co-page">
 		<div id="fh5co-header">
 			<header id="fh5co-header-section">
-				<div class="container">
-					<div class="nav-header">
-						<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-						<h1 id="fh5co-logo"><a href="index.ejs">Glow</a></h1>
-						<!-- START #fh5co-menu-wrap -->
-						<nav id="fh5co-menu-wrap" role="navigation">
-							<ul class="sf-menu" id="fh5co-primary-menu">
-								<li>
-									<a href="index.ejs">Home</a>
-								</li>
-								<li>
-									<a href="portfolio.ejs" class="fh5co-sub-ddown">Work</a>
-									<ul class="fh5co-sub-menu">
-										<li><a href="http://freehtml5.co/preview/?item=build-free-html5-bootstrap-template" target="_blank">Build</a></li>
-										<li><a href="http://freehtml5.co/preview/?item=work-free-html5-template-bootstrap" target="_blank">Work</a></li>
-										<li><a href="http://freehtml5.co/preview/?item=light-free-html5-template-bootstrap" target="_blank">Light</a></li>
-										<li><a href="http://freehtml5.co/preview/?item=relic-free-html5-template-using-bootstrap" target="_blank">Relic</a></li>
-										<li><a href="http://freehtml5.co/preview/?item=display-free-html5-template-using-bootstrap" target="_blank">Display</a></li>
-										<li><a href="http://freehtml5.co/preview/?item=sprint-free-html5-template-bootstrap" target="_blank">Sprint</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="services.ejs" class="fh5co-sub-ddown">Services</a>
-									 <ul class="fh5co-sub-menu">
-									 	<li><a href="left-sidebar.ejs">Web Development</a></li>
-									 	<li><a href="right-sidebar.ejs">Branding &amp; Identity</a></li>
-										<li>
-											<a href="#" class="fh5co-sub-ddown">Free HTML5</a>
-											<ul class="fh5co-sub-menu">
-												<li><a href="http://freehtml5.co/preview/?item=build-free-html5-bootstrap-template" target="_blank">Build</a></li>
-												<li><a href="http://freehtml5.co/preview/?item=work-free-html5-template-bootstrap" target="_blank">Work</a></li>
-												<li><a href="http://freehtml5.co/preview/?item=light-free-html5-template-bootstrap" target="_blank">Light</a></li>
-												<li><a href="http://freehtml5.co/preview/?item=relic-free-html5-template-using-bootstrap" target="_blank">Relic</a></li>
-												<li><a href="http://freehtml5.co/preview/?item=display-free-html5-template-using-bootstrap" target="_blank">Display</a></li>
-												<li><a href="http://freehtml5.co/preview/?item=sprint-free-html5-template-bootstrap" target="_blank">Sprint</a></li>
-											</ul>
-										</li>
-										<li><a href="#">UI Animation</a></li>
-										<li><a href="#">Copywriting</a></li>
-										<li><a href="#">Photography</a></li> 
-									</ul>
-								</li>
-								<li class="active"><a href="about.ejs">About</a></li>
-								<li><a href="blog.ejs">Blog</a></li>
-								<li><a href="contact.ejs">Contact</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
 
 			</header>
-		</div>
+		
 		<div class="page-header text-center">
 			<h1>Search & Filter</h1>
 			<a href="/" class="btn btn-default btn-sm">Home</a>
@@ -140,37 +91,36 @@
 				</div>
 			</div>
 			<div class="container">
-			<form class="row g-3" id="inputForm">
+			<form action="/therapists" class="row g-3" id="inputForm" method="post">
 				<div class="col-md-6">
 					<label for="inputEmail4" class="form-label">Email</label>
-					<input type="email" class="form-control" id="inputEmail4">
+					<input type="email" class="form-control" id="email" name="email">
 				</div>
 				<div class="col-md-6">
-					<label for="Specialty" class="form-label">Specialty</label>
-					<input type="text" class="form-control" id="specialty" placeholder="Marriage & Family Therapist etc.">
+					<label for="specialty" class="form-label">Specialty</label>
+					<input type="text" class="form-control" id="specialty" name="specialty" placeholder="Marriage & Family Therapist etc.">
 				</div>
 				<div class="col-md-6">
 				  <label for="inputFirstName" class="form-label">First Name</label>
-				  <input type="firstName" class="form-control" id="inputFirstName">
+				  <input type="firstName" class="form-control" id="inputFirstName" name="firstName">
 				</div>
 				
 				<div class="col-md-6">
 				  <label for="inputLastName" class="form-label">Last Name</label>
-				  <input type="lastName" class="form-control" id="inputLastName">
+				  <input type="lastName" class="form-control" id="inputLastName"
+				  name="lastName">
 				</div>
-				
-				
 				<div class="col-12">
 				  <label for="inputAddress" class="form-label">Address </label>
-				  <input type="text" class="form-control" id="inputAddress" placeholder="Office Building, studio, or floor">
+				  <input type="text" class="form-control" id="inputAddress" name="streetAddress" placeholder="Office Building, studio, or floor">
 				</div>
 				<div class="col-md-6">
 				  <label for="inputCity" class="form-label">City</label>
-				  <input type="text" class="form-control" id="inputCity">
+				  <input type="text" class="form-control" id="inputCity" name="city">
 				</div>
 				<div class="col-md-4">
 				  <label for="inputState" class="form-label">State</label>
-				  <select id="inputState" class="form-select">
+				  <select id="inputState" class="form-select" name="state">
 					<option selected>Choose...</option>
 					<option value="AL">AL</option>
 					<option value="AK">AK</option>
@@ -226,19 +176,19 @@
 				</div>
 				<div class="col-md-2">
 				  <label for="inputZip" class="form-label">Zip</label>
-				  <input type="text" class="form-control" id="inputZip">
+				  <input type="text" class="form-control" id="inputZip" name="zipcode">
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Review Title</label>
-					<input type="text" class="form-control" id="reviewTitle" placeholder="One of the best sessions I've had">
+					<input type="text" class="form-control" id="reviewTitle" name="reviewTitle" placeholder="One of the best sessions I've had">
 				  </div>
 				  <div class="mb-3">
 					<label for="exampleFormControlTextarea1" class="form-label">Review Description</label>
-					<textarea class="form-control" id="review" rows="3"></textarea>
+					<textarea class="form-control" id="review" rows="3" name="reviewDescription"></textarea>
 				  </div>
 				  <div class="col-md-6">
 					<label for="rating" class="form-label">Rating:</label>
-  					<input type="number" id="rating" name="rating" min="1" max="5" class="form-control"  required>
+  					<input type="number" id="rating" name="rating" min="1" max="5" class="form-control" name="rating" required>
 				  </div>
 				  <div class="col-md-6">
 					<label for="name" class="form-label">Your Name (Optional):</label>

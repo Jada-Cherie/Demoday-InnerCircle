@@ -160,6 +160,33 @@ const emotionScores = analyzeEmotions(text);
       })
     })
 
+//////////Thearpist input form & Filter////////////
+
+//where the form is being used to store in database
+app.post('/therapists', (req, res) => {
+  console.log('therapist and review taken',req.body)
+    db.collection('thearpistCollection').save({
+      email: req.body.email,
+      specialty: req.body.specialty,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      streetAddress: req.body.streetAddress,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
+      reviewTitle: req.body.reviewTitle,
+      reviewDescription: req.body.reviewDescription,
+      rating: req.body.rating,
+      name: req.body.name,
+      insurances: req.body.insurances
+      }, (err, result) => {
+       if (err) return console.log(err, 'it did not store in the database')
+       console.log('saved to database')
+       res.redirect('/about')
+      })
+})
+
+//get route for searching/filtering therapists
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
