@@ -1,5 +1,5 @@
 const ObjectId = require('mongodb').ObjectId
-// const { analyzeEmotions } = require('./utils');
+
 module.exports = function(app, passport, db,) {
   // list of emotion keywords
 const emotionKeywords = {
@@ -160,6 +160,7 @@ const emotionScores = analyzeEmotions(text);
       })
     })
 
+
 //////////Thearpist input form & Filter////////////
 
 //where the form is being used to store in database
@@ -174,6 +175,7 @@ app.post('/therapists', (req, res) => {
       city: req.body.city,
       state: req.body.state,
       zipcode: req.body.zipcode,
+      ethnicity: req.body.ethnicity,
       reviewTitle: req.body.reviewTitle,
       reviewDescription: req.body.reviewDescription,
       rating: req.body.rating,
@@ -187,6 +189,46 @@ app.post('/therapists', (req, res) => {
 })
 
 //get route for searching/filtering therapists
+app.get('/search', (req, res) => {
+  const specialty = req.query.specialty;
+  const ethnicity = req.query.ethnicity;
+  const insurances = req.query.insurances;
+  const rating = req.query.rating;
+  const city = req.query.city;
+  const state = req.query.state;
+
+  const query = {};
+
+  if (specialty) {
+    query.specialty = specialty;
+  }
+
+  if (ethnicity) {
+    query.ethnicity = ethnicity;
+  }
+
+  if (insurances) {
+    query.insurances = insurances;
+  }
+
+  if (rating) {
+    query.rating = { $gte: parseInt(rating) };
+  }
+
+  if (city) {
+    query.city = city;
+  }
+
+  if (state) {
+    query.state = state;
+  }
+  db.collection('thearpistCollection').find({query}).toArray((err, result) => {
+    if (err) return console.log(err)
+    res.render('about.ejs', {
+      therapists: result
+    })
+  })
+});
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================

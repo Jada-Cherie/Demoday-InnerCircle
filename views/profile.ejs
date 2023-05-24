@@ -48,11 +48,6 @@
         <div class="chart">
           <canvas id="myChart"></canvas>
         </div>
-
-        <div class= test>
-          <h2>Emotions (This isn't staying was using to test to see if a function worked)</h2>
-          <span id="result-container"></span>
-        </div>
       
 
   <section class="collection">
@@ -127,18 +122,19 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  
+
+
   const data = {
     labels:['Fear', 'Angry', 'Happy', 'Excited', 'Sad', 'Fear', 'Bored'],
     datasets:[{
       label: 'Journal # 1',
       data: [
-                0.3,
-                0.05,
-                0.7,
-                0.3,
-                0.2,
-                0.1,
+                0.0,
+                0.50,
+                0.0,
+                0.0,
+                0.50,
+                0.0,
                 0.0
             ],
         fill: true,
@@ -150,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         pointHoverBorderColor: 'rgb(255, 99, 132)'
     },{
         label: 'Journal # 2',
-          data: [0.7, 0.3, 0.5, 0.1, 0.0, 0.0, 0.2],
+          data: [0.25, 0.0, 0.5, 0.25, 0.0, 0.0, 0.2],
           fill: true,
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
           borderColor: 'rgb(54, 162, 235)',
@@ -160,20 +156,44 @@ document.addEventListener('DOMContentLoaded', function() {
           pointHoverBorderColor: 'rgb(54, 162, 235)'
     }]
   }
-  const options = {
-    scale: {
-      ticks: {
-        beginAtZero: true
-      }
-    }
-  };
 
   const ctx = document.getElementById('myChart').getContext('2d');
   new Chart(ctx, {
-    type: 'radar',
+    type: 'line',
     data: data,
-    options: options
-  });
+    options: {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Emotions Tracker'
+      }
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+
+        // grid line settings
+        grid: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
+        },
+      },
+    }
+  },
+});
+
   //   let ctx = document.getElementById('myChart').getContext('2d')
 // let myChart = new Chart(ctx,{
 //     type:'line',
